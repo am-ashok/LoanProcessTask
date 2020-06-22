@@ -27,6 +27,29 @@ app.use('/customer', customerRouter);
 app.use('/asstManager', asstManagerRouter);
 app.use('/bankManager', bankManagerRouter);
 
+// MongoDB Connection
+
+const MongoClient = require('mongodb').MongoClient;
+const uri =
+  'mongodb+srv://dbUser:dbUserPassword@cluster0-xqgtj.mongodb.net/Cluster0?retryWrites=true&w=majority';
+const client = new MongoClient(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+client.connect((err) => {
+  const collection = client.db('test').collection('devices');
+  console.log('db started');
+  // perform actions on the collection object
+  client.close();
+});
+
+// mongoDB
+//   .connect(connectionString, { useUnifiedTopology: true })
+//   .then((client) => {
+//     console.log('Connected to Database');
+//   })
+//   .catch((error) => console.error(error));
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
