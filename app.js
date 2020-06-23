@@ -1,3 +1,6 @@
+// Loading env file data
+require('dotenv').config();
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -10,7 +13,8 @@ var asstManagerRouter = require('./routes/asstManager');
 var bankManagerRouter = require('./routes/bankManager');
 
 var app = express();
-var port = 3000;
+const port = process.env.port || 3000;
+// var port = 3000;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
