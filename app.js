@@ -1,20 +1,21 @@
-// Loading env file data
-require('dotenv').config();
+const express = require('express');
+const app = express();
+const dotenv = require('dotenv');
+
+// const mongodb = require('mongodb');
 
 var createError = require('http-errors');
-var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var customerRouter = require('./routes/customer');
-var asstManagerRouter = require('./routes/asstManager');
-var bankManagerRouter = require('./routes/bankManager');
+const indexRouter = require('./routes/index');
+const authRouter = require('./routes/auth');
 
-var app = express();
-const port = process.env.port || 3000;
-
+const port = process.env.port || 4000;
+const connectDB = require('./connection/db');
+dotenv.config();
+connectDB();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -26,32 +27,18 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/customer', customerRouter);
-app.use('/asstManager', asstManagerRouter);
-app.use('/bankManager', bankManagerRouter);
+app.use('/api/user', authRouter);
 
-// MongoDB Connection
-
-const MongoClient = require('mongodb').MongoClient;
-const uri =
-  'mongodb+srv://dbUser:dbUserPassword@cluster0-xqgtj.mongodb.net/Cluster0?retryWrites=true&w=majority';
-const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-client.connect((err) => {
-  const collection = client.db('test').collection('devices');
-  console.log('db started');
-  // perform actions on the collection object
-  client.close();
-});
-
-// mongoDB
-//   .connect(connectionString, { useUnifiedTopology: true })
-//   .then((client) => {
-//     console.log('Connected to Database');
-//   })
-//   .catch((error) => console.error(error));
+// mongoose.connect(
+//   'DB_CONNECT',
+//   {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   },
+//   () => {
+//     console.log('Connected to db!');
+//   }
+// );
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-  res.json('Bank Manager');
+  res.render('../views/asstManagerLogin.ejs', { title: 'ASST MANAGER LOGIN' });
 });
 
 module.exports = router;
