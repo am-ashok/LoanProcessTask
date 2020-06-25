@@ -7,5 +7,21 @@
   <body>
     <h1>BANK MANAGER LOGIN</h1>
     <p>Welcome to <%= title %></p>
+    <form>
+      <div class="form-group">
+        <label for="bmemail">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="bmemail"
+          aria-describedby="emailHelp"
+        />
+      </div>
+      <div class="form-group">
+        <label for="bmpassword">Password</label>
+        <input type="password" class="form-control" id="bmpassword" />
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
   </body>
 </html>

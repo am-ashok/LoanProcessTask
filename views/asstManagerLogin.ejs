@@ -7,5 +7,21 @@
   <body>
     <h1>ASST MANAGER LOGIN</h1>
     <p>Welcome to <%= title %></p>
+    <form>
+      <div class="form-group">
+        <label for="amemail">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="amemail"
+          aria-describedby="emailHelp"
+        />
+      </div>
+      <div class="form-group">
+        <label for="ampassword">Password</label>
+        <input type="password" class="form-control" id="ampassword" />
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
   </body>
 </html>

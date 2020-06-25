@@ -7,5 +7,21 @@
   <body>
     <h1>CUSTOMER LOGIN</h1>
     <p>Welcome to <%= title %></p>
+    <form>
+      <div class="form-group">
+        <label for="cemail">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="cemail"
+          aria-describedby="emailHelp"
+        />
+      </div>
+      <div class="form-group">
+        <label for="cpassword">Password</label>
+        <input type="password" class="form-control" id="cpassword" />
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
   </body>
 </html>
