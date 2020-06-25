@@ -2,8 +2,6 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 
-// const mongodb = require('mongodb');
-
 var createError = require('http-errors');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -11,6 +9,8 @@ var logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
+const bankManagerRouter = require('./routes/bankManager');
+const asstManagerRouter = require('./routes/asstManager');
 
 const port = process.env.port || 4000;
 const connectDB = require('./connection/db');
@@ -28,17 +28,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/api/user', authRouter);
-
-// mongoose.connect(
-//   'DB_CONNECT',
-//   {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   },
-//   () => {
-//     console.log('Connected to db!');
-//   }
-// );
+app.use('/api/bankManager', bankManagerRouter);
+app.use('/api/asstManager', asstManagerRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
