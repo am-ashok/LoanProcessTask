@@ -7,10 +7,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// routes here --- 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const bankManagerRouter = require('./routes/bankManager');
 const asstManagerRouter = require('./routes/asstManager');
+const loanRouter = require('./routes/customer');
 
 const port = process.env.port || 4000;
 const connectDB = require('./connection/db');
@@ -26,10 +28,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// router api here ---
 app.use('/', indexRouter);
 app.use('/api/user', authRouter);
 app.use('/api/bankManager', bankManagerRouter);
 app.use('/api/asstManager', asstManagerRouter);
+app.use('/api/customer', loanRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

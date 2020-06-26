@@ -3,12 +3,12 @@ const { number, string } = require('@hapi/joi');
 const loanSchema = new mongoose.Schema(
   {
     loan_amount: {
-      type: number,
+      type: Number,
       required: true,
       max: 7,
     },
     cibilScore: {
-      type: number,
+      type: Number,
       required: true,
     },
     loanStatus: {
@@ -20,3 +20,6 @@ const loanSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+const Loan = mongoose.model('Loan', loanSchema);
+module.exports = Loan;
